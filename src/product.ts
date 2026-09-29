@@ -1,12 +1,12 @@
  class Product {
-    id:number;
-    name:string;
-    price:number;
-    description?:string;
+    private _id:number;
+    private _name:string;
+   private _price:number;
+    private _description?:string;
     constructor(product:{id:number,name:string,price:number,description?:string}){
-        this.id=product.id
-        this.name=product.name
-        this.price=product.price;
-        this.description=product.description;
+        this._id=product.id
+        this._name=product.name
+        this._price=product.price;
+        this._description=product.description;
     }
 }
