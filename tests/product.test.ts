@@ -1,19 +1,25 @@
+import { describe, test, expect } from '@jest/globals';
+import { Product } from '../src/product';
+
 describe('Product', () => {
-  test('should create a product correctly via the constructor', () => {});
 
-  test('should update the name successfully using the setter', () => {});
+  test('should return undefined when product is created without a description', () => {
+    const product = new Product({ id: 1, name: 'Laptop', price: 999 });
 
-  test('should update the price successfully using the setter', () => {});
+    expect(product.description).toBeUndefined();
+  });
+  test('A test that validates that calling setPrice() with a negative value throws an error',()=>{
+    const product = new Product({ id: 1, name: 'Laptop', price: 999 });
+ expect(() => {
+        product.price = -3;
+    }).toThrow('Price cannot be negative.')
+  
 
-  test('should have an undefined description when not set', () => {});
+})})
+test('A test that validates that calling setName() with an empty string throws an error', () => {
+  const product = new Product({ id: 1, name: 'Laptop', price: 999 });
 
-  test('should allow setting and getting the description', () => {});
-
-  test('should throw an error when setting a negative price', () => {});
-
-  test('should throw an error when setting an empty name', () => {});
-
-  test('should throw an error if created with a negative price', () => {});
-
-  test('should throw an error if created with an empty name', () => {});
+  expect(() => {
+    product.name = '';
+  }).toThrow('Name cannot be empty');
 });
