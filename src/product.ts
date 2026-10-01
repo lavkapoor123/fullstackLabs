@@ -18,12 +18,11 @@ export class Product {
     get name(): string {
         return this._name;
     }
-   set name(value: string) {
-    if (value == '') {
-        throw new Error('Name cannot be empty');
-    }
-
-    this._name = value;
+    set name(value: string) {
+        if (value === "") {
+            throw new Error("Name cannot be empty");
+        }
+        this._name = value;
     }
 
     get price(): number {
@@ -31,7 +30,7 @@ export class Product {
     }
     set price(value: number) {
         if (value < 0) {
-            throw new Error(`Price cannot be negative.`);
+            throw new Error("Price cannot be negative.");
         }
         this._price = value;
     }

@@ -1,17 +1,55 @@
-describe('ShoppingCart', () => {
-  beforeEach(() => {});
+import { describe, test, expect } from "@jest/globals";
+import { Product } from "../src/product";
+import { ShoppingCart } from "../src/shoppingCart";
+import { CartItem } from "../src/types/index";
 
-  test('should add a new product to the cart', () => {});
+describe("ShoppingCart", () => {
 
-  test('should increase the quantity of an existing product', () => {});
+    test("should find an existing cart item", () => {
+        const product = new Product({
+            id: 1,
+            name: "Laptop",
+            price: 1000
+        });
 
-  test('should calculate the total price correctly', () => {});
+        const cart = new ShoppingCart();
 
-  test('should remove a product and return it', () => {});
+        cart.addProduct(product);
 
-  test('should return null when trying to remove a non-existent product', () => {});
+        const result = cart.findCartItem(
+            (item: CartItem) => item.product.id === 1
+        );
 
-  test('should find an item using the findCartItem method', () => {});
+        expect(result?.product).toBe(product);
+    });
 
-  test('should return null from findCartItem when no item matches', () => {});
+    test("should return null when item is not found", () => {
+        const cart = new ShoppingCart();
+
+        const result = cart.findCartItem(
+            (item: CartItem) => item.product.id === 999
+        );
+
+        expect(result).toBeNull();
+    });
+
+    test("should increase quantity when product already exists", () => {
+        const product = new Product({
+            id: 1,
+            name: "Laptop",
+            price: 1000
+        });
+
+        const cart = new ShoppingCart();
+
+        cart.addProduct(product);
+        cart.addProduct(product);
+
+        const result = cart.findCartItem(
+            (item: CartItem) => item.product.id === 1
+        );
+
+        expect(result?.quantity).toBe(2);
+    });
+
 });

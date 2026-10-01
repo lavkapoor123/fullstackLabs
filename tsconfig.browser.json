@@ -1,6 +1,9 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "module": "es6" // Overschrijven voor browser-compatibiliteit
-  }
+    "module": "es6",
+    "moduleResolution": "node",
+    "outDir": "dist-test"
+  },
+  "include": ["src/**/*"]
 }
